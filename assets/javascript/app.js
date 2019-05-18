@@ -14,7 +14,7 @@ var question1 = {
      b: "River Side Park", 
      c: "Hamilton Park",
   },
-  correctAnswer: "River Side Park",
+  correctAnswer: "Central Park",
 }
 
 var question2 = {
@@ -42,7 +42,9 @@ var quizQuestions = [question1, question2, question3];
 
 // dynamically display question and answers on screen
 function displayQuestion(object){
-    var round = $("<div>");
+    $("#game-round").empty();
+    
+  var round = $("<div>");
 //  stores the question info
   var currentQ = object.question;
 // creates an element to have the question displayed
@@ -86,11 +88,23 @@ round.append(askMe)
 
 displayQuestion(question1);
 
-function isCorrectAnswer(){
-  if ($(this) === 
-  console.log($(this));
+function isCorrectAnswer(object) {
+  $(".answers").on("click", function (event){ 
+    var guess = $(this).attr("value");
+    console.log(guess);
+    if (guess === object.correctAnswer){
+      console.log(object.correctAnswer)
+      alert ("you win");
+    }
+    else {
+      alert ("you are wrong")
+    }
   });
 }
+
+isCorrectAnswer(question1);
+
+
 // timer starts count down and waits for a click to stop
 // if no click you lose
 // if a click check if click is answer
