@@ -5,7 +5,7 @@ var currentQuestion = 0;
 // Correct/Wrong answer counts
 var correct = 0;
 var wrong = 0;
-var counter = 30;
+var counter = 5;
 var timer;
 
 // create object with all questions and answers
@@ -116,18 +116,11 @@ function wrongGuess() {
     console.log("wrong Answer: " + wrong);
 }
 
-// function playAgain() {
-//   $("#play-again").on("click", function () {
-//     currentQuestion = 0;
-//     correct = 0;
-//     wrong = 0;
-//     displayQuestion(questionArray[currentQuestion]);
-//   });
-// }
 
 function gameIsOver() {
     alert("Lets see how you did");
     $("#game-round").empty();
+    $("#count-down").empty();
     var endOfGame = $("<div>");
 
     var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct");
@@ -152,8 +145,9 @@ function gameIsOver() {
 
 function startNewRound() {
     currentQuestion += 1;
+    console.log("this is current question # " + currentQuestion)
     clearInterval(timer);
-    counter = 5;
+    counter = 5
     if (currentQuestion < questionArray.length) {
         displayQuestion(questionArray[currentQuestion]);
     }
@@ -167,29 +161,58 @@ function isCorrectAnswer(object) {
         var guess = $(this).attr("value");
         console.log(guess);
         if (guess === object.correctAnswer) {
-            correctGuess();
+            displayCorrectAnswer(object);
+            // correctGuess();
         }
         else {
-            wrongGuess();
+            displayWrongGuess(object);
+            // wrongGuess();
         }
-        startNewRound();
+      setTimeout(startNewRound, 3000);
     });
 }
 
-// function endOfRound(){
-  
-
-// }
-
 function startTimer(){
-  // setTimeout(startNewround(), 1000);
   counter --;
   console.log(counter)
   $("#count-down").text("You have " + counter + " seconds left.")
   if (counter === 0){
     wrong += 1;
-    console.log("wrong count; " + wrong);
+    console.log("wrong count: " + wrong);
     startNewRound();
   }
 }
 
+function displayCorrectAnswer(object){
+    clearInterval(timer);
+    correct += 1;
+    console.log(correct)
+    
+    $("#count-down").empty();
+    $("#game-round").empty();
+    
+    var showAnswer = $("<div>");
+    
+    var answerToShow = object.correctAnswer;
+    var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow)
+    displayAnswer.addClass("display")
+    showAnswer.append(displayAnswer)
+    
+    $("#game-round").append(showAnswer)
+}
+
+function displayWrongGuess(object){
+  clearInterval(timer);
+  wrong += 1;
+  console.log(wrong)
+  $("#count-down").empty();
+  $("#game-round").empty();
+
+  var showAnswer = $("<div>");
+  var answerToShow = object.correctAnswer;
+  var displayAnswer = $("<div>").text("You got it wrong! The correct answer was " + answerToShow)
+  displayAnswer.addClass("display")
+  showAnswer.append(displayAnswer)
+
+  $("#game-answer").append(showAnswer)
+}
