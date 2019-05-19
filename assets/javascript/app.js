@@ -23,7 +23,8 @@ var question2 = {
       a: "One World Trade Center",
       b: "Empire State Building",
       c: "Rockcenter",
-  }
+  },
+  correctAnswer: "One World Trade Center",
 }
 
 var question3 = {
@@ -31,18 +32,31 @@ var question3 = {
   answer:{
       a: "One",
       b: "Two",
-      c: "Three",
-    }
+      c: "five",
+    },
+  correctAnswer: "five",
 }
 
 // array of questions
-var quizQuestions = [question1, question2, question3];
+var questionArray = [question1, question2, question3];
+console.log(questionArray)
 
+function correctAnswer(){
+  alert ("you are correct");
+  correctAnswers++;
+  console.log(correctAnswers)
+}
+
+function wrongAnswer() {
+    alert("you are wrong");
+    wrongAnswers++;
+    console.log(wrongAnswers)
+}
 
 
 // dynamically display question and answers on screen
 function displayQuestion(object){
-    $("#game-round").empty();
+  $("#game-round").empty();
     
   var round = $("<div>");
 //  stores the question info
@@ -70,6 +84,8 @@ round.append(askMe)
   var guessMe2 = $("<button>").text(answer2);
 // adds a class called answers
   guessMe2.addClass("answers");
+// value for if its a correct answer
+  guessMe2.attr("value", answer2);  
 //  display the question
   round.append(guessMe2)
 
@@ -79,6 +95,8 @@ round.append(askMe)
   var guessMe3 = $("<button>").text(answer3);
 // adds a class called answers
   guessMe3.addClass("answers");
+// value for if its a correct answer
+  guessMe3.attr("value", answer3);
 //   display the question
   round.append(guessMe3)
 
@@ -86,23 +104,22 @@ round.append(askMe)
   $("#game-round").append(round)
 };
 
-displayQuestion(question1);
+displayQuestion(questionArray[2]);
 
 function isCorrectAnswer(object) {
   $(".answers").on("click", function (event){ 
     var guess = $(this).attr("value");
     console.log(guess);
     if (guess === object.correctAnswer){
-      console.log(object.correctAnswer)
-      alert ("you win");
+      correctAnswer();
     }
     else {
-      alert ("you are wrong")
+      wrongAnswer();
     }
   });
 }
 
-isCorrectAnswer(question1);
+isCorrectAnswer(questionArray[2]);
 
 
 // timer starts count down and waits for a click to stop
@@ -110,17 +127,3 @@ isCorrectAnswer(question1);
 // if a click check if click is answer
 // if correct display correct answer, if incorrect say correct answer
 // display above info for x amount of time, then go to next question
-
-
-
-
-
-
-
-
-
-
-
-
-
-// };
