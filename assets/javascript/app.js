@@ -1,10 +1,12 @@
 // $(document).ready(){
 
+// keeps count of the index of the displayed question
 var currentQuestion = 0;
-var correctAnswers = 0;
-var wrongAnswers = 0;
-var unanswered = 0;
-
+// Correct/Wrong answer counts
+var correct = 0;
+var wrong = 0;
+var counter = 30;
+var timer;
 
 // create object with all questions and answers
 var question1 = {
@@ -22,7 +24,7 @@ var question2 = {
   answer:{
       a: "One World Trade Center",
       b: "Empire State Building",
-      c: "Rockcenter",
+      c: "Chrysler Building",
   },
   correctAnswer: "One World Trade Center",
 }
@@ -39,19 +41,6 @@ var question3 = {
 
 // array of questions
 var questionArray = [question1, question2, question3];
-console.log(questionArray)
-
-function correctAnswer(){
-  alert ("you are correct");
-  correctAnswers++;
-  console.log(correctAnswers)
-}
-
-function wrongAnswer() {
-    alert("you are wrong");
-    wrongAnswers++;
-    console.log(wrongAnswers)
-}
 
 
 // dynamically display question and answers on screen
@@ -102,28 +91,105 @@ round.append(askMe)
 
 // Put all the question info on page
   $("#game-round").append(round)
+
+//   checks if the answer is correct and then displays next question
+  isCorrectAnswer(object);
+  timer = setInterval(startTimer, 1000);
 };
 
-displayQuestion(questionArray[2]);
+// Starts the game by displaying first question
+$("#start-game").on("click", function(){
+    displayQuestion(questionArray[currentQuestion]);
+});
 
-function isCorrectAnswer(object) {
-  $(".answers").on("click", function (event){ 
-    var guess = $(this).attr("value");
-    console.log(guess);
-    if (guess === object.correctAnswer){
-      correctAnswer();
-    }
-    else {
-      wrongAnswer();
-    }
-  });
+// checks if the guess is correct then moves to the next question
+function correctGuess() {
+    alert("you are correct");
+    correct += 1;
+    console.log("correct Answer: " + correct);
 }
 
-isCorrectAnswer(questionArray[2]);
 
+function wrongGuess() {
+    alert("you are wrong");
+    wrong += 1;
+    console.log("wrong Answer: " + wrong);
+}
 
-// timer starts count down and waits for a click to stop
-// if no click you lose
-// if a click check if click is answer
-// if correct display correct answer, if incorrect say correct answer
-// display above info for x amount of time, then go to next question
+// function playAgain() {
+//   $("#play-again").on("click", function () {
+//     currentQuestion = 0;
+//     correct = 0;
+//     wrong = 0;
+//     displayQuestion(questionArray[currentQuestion]);
+//   });
+// }
+
+function gameIsOver() {
+    alert("Lets see how you did");
+    $("#game-round").empty();
+    var endOfGame = $("<div>");
+
+    var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct");
+    endOfGame.append(displayCorrectGuesses);
+
+    var displayWrongGuesses = $("<div>").text("You got " + wrong + " wrong");
+    endOfGame.append(displayWrongGuesses);
+
+    var playAgain = $("<button>").text("Play Again");
+    playAgain.addClass("play-again");
+    endOfGame.append(playAgain)
+
+    $("#game-round").append(endOfGame);
+
+  $(".play-again").on("click", function () {
+    correct = 0;
+    wrong = 0;
+    currentQuestion = 0;
+    displayQuestion(questionArray[currentQuestion]);
+  });
+};
+
+function startNewRound() {
+    currentQuestion += 1;
+    clearInterval(timer);
+    counter = 5;
+    if (currentQuestion < questionArray.length) {
+        displayQuestion(questionArray[currentQuestion]);
+    }
+    else {
+        gameIsOver()
+    };
+}
+
+function isCorrectAnswer(object) {
+    $(".answers").on("click", function (event) {
+        var guess = $(this).attr("value");
+        console.log(guess);
+        if (guess === object.correctAnswer) {
+            correctGuess();
+        }
+        else {
+            wrongGuess();
+        }
+        startNewRound();
+    });
+}
+
+// function endOfRound(){
+  
+
+// }
+
+function startTimer(){
+  // setTimeout(startNewround(), 1000);
+  counter --;
+  console.log(counter)
+  $("#count-down").text("You have " + counter + " seconds left.")
+  if (counter === 0){
+    wrong += 1;
+    console.log("wrong count; " + wrong);
+    startNewRound();
+  }
+}
+
