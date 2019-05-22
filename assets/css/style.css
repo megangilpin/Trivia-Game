@@ -3,3 +3,11 @@ body{
   background-repeat: no-repeat;
   background-size: cover; 
 }
+
+
+
+.answer{
+  display:flex;
+  justify-content: center;
+  margin: 10px
+}

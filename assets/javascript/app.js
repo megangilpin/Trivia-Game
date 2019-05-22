@@ -10,13 +10,15 @@ var timer;
 
 // create object with all questions and answers
 var question1 = {
-  question: "What is the largest park?",
+  question: "You're at the 92 street Y what train to do you take to get the West Village for some burgers at Corner Bistro",
   answer:{
-     a: "Central Park",
-     b: "River Side Park", 
-     c: "Hamilton Park",
+     a: "Gross, I only take Taxis",
+     b: "5 train to the L", 
+     c: "The NQR to the A",
   },
-  correctAnswer: "Central Park",
+  correctAnswer: "5 train to the L",
+  // questionImage: <iframe src="https://giphy.com/embed/3osxYdZN9vCr0l7AiY" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/broadcity-broad-city-ilana-glazer-hail-to-the-kween-3osxYdZN9vCr0l7AiY">via GIPHY</a></p>;
+  // correctAnswerImage: ;
 }
 
 var question2 = {
@@ -46,14 +48,18 @@ var questionArray = [question1, question2, question3];
 // dynamically display question and answers on screen
 function displayQuestion(object){
   $("#game-round").empty();
-    
+  $("#game-answer").empty();
+
+// main div all components go into
   var round = $("<div>");
+  round.addClass("flex-container d-flex flex-sm-column justify-content-center m-4");
 //  stores the question info
   var currentQ = object.question;
 // creates an element to have the question displayed
-  var askMe = $("<h1>").text(currentQ);
+  var askMe = $("<h6>").text(currentQ);
+  askMe.addClass("mx-auto")
 //   display the question
-round.append(askMe)
+  round.append(askMe)
 
 
 //  stores the answer info
@@ -61,7 +67,7 @@ round.append(askMe)
 // creates an element to have the answer display
   var guessMe1 = $("<button>").text(answer1);
 // add a class called Answers
-  guessMe1.addClass("answers");
+  guessMe1.addClass("answers mx-auto btn btn-light answers my-2");
 // value for if its a correct answer
   guessMe1.attr("value", answer1);
 //   display the question
@@ -72,7 +78,7 @@ round.append(askMe)
 // creates an element to have the answer display
   var guessMe2 = $("<button>").text(answer2);
 // adds a class called answers
-  guessMe2.addClass("answers");
+  guessMe2.addClass("answers mx-auto btn btn-light answers my-2");
 // value for if its a correct answer
   guessMe2.attr("value", answer2);  
 //  display the question
@@ -83,11 +89,12 @@ round.append(askMe)
 // creates an element to have the answer display
   var guessMe3 = $("<button>").text(answer3);
 // adds a class called answers
-  guessMe3.addClass("answers");
+  guessMe3.addClass("answers mx-auto btn btn-light answers my-2");
 // value for if its a correct answer
   guessMe3.attr("value", answer3);
 //   display the question
   round.append(guessMe3)
+
 
 // Put all the question info on page
   $("#game-round").append(round)
@@ -121,16 +128,19 @@ function gameIsOver() {
     alert("Lets see how you did");
     $("#game-round").empty();
     $("#count-down").empty();
+    $("#game-answer").empty();
     var endOfGame = $("<div>");
 
     var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct");
+    displayCorrectGuesses.addClass("display");
     endOfGame.append(displayCorrectGuesses);
 
     var displayWrongGuesses = $("<div>").text("You got " + wrong + " wrong");
+    displayCorrectGuesses.addClass("display");
     endOfGame.append(displayWrongGuesses);
 
     var playAgain = $("<button>").text("Play Again");
-    playAgain.addClass("play-again");
+  playAgain.addClass("play-again mx-auto btn btn-light answers");
     endOfGame.append(playAgain)
 
     $("#game-round").append(endOfGame);
@@ -166,7 +176,6 @@ function isCorrectAnswer(object) {
         }
         else {
             displayWrongGuess(object);
-            // wrongGuess();
         }
       setTimeout(startNewRound, 3000);
     });
@@ -194,11 +203,9 @@ function displayCorrectAnswer(object){
     var showAnswer = $("<div>");
     
     var answerToShow = object.correctAnswer;
-    var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow)
-    displayAnswer.addClass("display")
+    var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow);
     showAnswer.append(displayAnswer)
-    
-    $("#game-round").append(showAnswer)
+    $("#game-answer").append(showAnswer)
 }
 
 function displayWrongGuess(object){
@@ -209,10 +216,9 @@ function displayWrongGuess(object){
   $("#game-round").empty();
 
   var showAnswer = $("<div>");
-  var answerToShow = object.correctAnswer;
-  var displayAnswer = $("<div>").text("You got it wrong! The correct answer was " + answerToShow)
-  displayAnswer.addClass("display")
-  showAnswer.append(displayAnswer)
 
+  var answerToShow = object.correctAnswer;
+  var displayAnswer = $("<div>").text("You got it wrong! The correct answer was " + answerToShow);
+  showAnswer.append(displayAnswer);
   $("#game-answer").append(showAnswer)
 }
