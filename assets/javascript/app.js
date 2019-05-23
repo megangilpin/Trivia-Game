@@ -67,7 +67,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe1 = $("<button>").text(answer1);
 // add a class called Answers
-  guessMe1.addClass("answers mx-auto btn btn-light answers my-2");
+  guessMe1.addClass("answers mx-auto btn btn-dark answers my-2");
 // value for if its a correct answer
   guessMe1.attr("value", answer1);
 //   display the question
@@ -78,7 +78,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe2 = $("<button>").text(answer2);
 // adds a class called answers
-  guessMe2.addClass("answers mx-auto btn btn-light answers my-2");
+  guessMe2.addClass("answers mx-auto btn btn-dark answers my-2");
 // value for if its a correct answer
   guessMe2.attr("value", answer2);  
 //  display the question
@@ -89,7 +89,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe3 = $("<button>").text(answer3);
 // adds a class called answers
-  guessMe3.addClass("answers mx-auto btn btn-light answers my-2");
+  guessMe3.addClass("answers mx-auto btn btn-dark answers my-2");
 // value for if its a correct answer
   guessMe3.attr("value", answer3);
 //   display the question
@@ -142,7 +142,7 @@ function gameIsOver() {
     endOfGame.append(displayWrongGuesses);
 
     var playAgain = $("<button>").text("Play Again");
-    playAgain.addClass("play-again mt-5 mx-auto btn btn-light answers");
+    playAgain.addClass("play-again mt-5 mx-auto btn btn-dark answers");
     endOfGame.append(playAgain)
 
     $("#game-round").append(endOfGame);
@@ -209,7 +209,7 @@ function displayCorrectAnswer(object){
     var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow);
     displayAnswer.addClass("mx-auto");
     showAnswer.append(displayAnswer);
-    $("#game-round").append(showAnswer);
+    $("#game-answer").append(showAnswer);
 }
 
 function displayWrongGuess(object){
