@@ -52,7 +52,7 @@ function displayQuestion(object){
 
 // main div all components go into
   var round = $("<div>");
-  round.addClass("flex-container d-flex flex-sm-column justify-content-center m-4");
+  round.addClass("d-flex flex-sm-column justify-content-center m-4");
 //  stores the question info
   var currentQ = object.question;
 // creates an element to have the question displayed
@@ -129,18 +129,20 @@ function gameIsOver() {
     $("#game-round").empty();
     $("#count-down").empty();
     $("#game-answer").empty();
+
     var endOfGame = $("<div>");
+    endOfGame.addClass("d-flex flex-sm-column justify-content-center m-4");
 
     var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct");
-    displayCorrectGuesses.addClass("display");
+  displayCorrectGuesses.addClass("display my-2 mx-auto");
     endOfGame.append(displayCorrectGuesses);
 
     var displayWrongGuesses = $("<div>").text("You got " + wrong + " wrong");
-    displayCorrectGuesses.addClass("display");
+    displayWrongGuesses.addClass("display my-2 mx-auto");
     endOfGame.append(displayWrongGuesses);
 
     var playAgain = $("<button>").text("Play Again");
-  playAgain.addClass("play-again mx-auto btn btn-light answers");
+    playAgain.addClass("play-again mt-5 mx-auto btn btn-light answers");
     endOfGame.append(playAgain)
 
     $("#game-round").append(endOfGame);
@@ -201,11 +203,13 @@ function displayCorrectAnswer(object){
     $("#game-round").empty();
     
     var showAnswer = $("<div>");
-    
+    showAnswer.addClass("d-flex flex-sm-column justify-content-center m-4")
+
     var answerToShow = object.correctAnswer;
     var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow);
-    showAnswer.append(displayAnswer)
-    $("#game-answer").append(showAnswer)
+    displayAnswer.addClass("mx-auto");
+    showAnswer.append(displayAnswer);
+    $("#game-round").append(showAnswer);
 }
 
 function displayWrongGuess(object){
@@ -216,9 +220,11 @@ function displayWrongGuess(object){
   $("#game-round").empty();
 
   var showAnswer = $("<div>");
+  showAnswer.addClass("d-flex flex-sm-column justify-content-center m-4");
 
   var answerToShow = object.correctAnswer;
   var displayAnswer = $("<div>").text("You got it wrong! The correct answer was " + answerToShow);
+  displayAnswer.addClass("mx-auto");
   showAnswer.append(displayAnswer);
-  $("#game-answer").append(showAnswer)
+  $("#game-round").append(showAnswer)
 }
