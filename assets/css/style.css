@@ -1,15 +1,32 @@
-body{
-  /* background-image: url("../images/background.jpg"); */
-  /* background-repeat: no-repeat;
-  background-size: cover;  */
-  font-family: 'Times New Roman', Times, serif;
+
+.title{
+  font-family: 'Sanchez', serif;
+  letter-spacing:2px;
+  color:red;
+  font-weight: 800;
 }
 
-h1{
-  font-size: 45px;
-  margin-bottom: 10px;
-}
 
 .jumbotron{
   padding: 10px;
+}
+
+#count-down{
+  font-family:Bangers;
+  font-size:25px;
+  letter-spacing:2px;
+  color:red;
+}
+
+#score{
+  font-family:Bangers;
+  font-size:25px;
+  letter-spacing:2px;
+  color: black;
+}
+
+.instructions, .display{
+  font-family:'Josefin Slab', serif;
+  font-size: 20px;
+  font-weight: 600;
 }

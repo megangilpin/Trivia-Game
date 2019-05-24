@@ -5,59 +5,83 @@ var currentQuestion = 0;
 // Correct/Wrong answer counts
 var correct = 0;
 var wrong = 0;
-var counter = 5;
+var counter = 25;
 var timer;
+
+// Hides subway gif for when time runs out
+$(".subway").hide()
 
 // create object with all questions and answers
 var question1 = {
-  question: "You're at the 92 street Y what train to do you take to get the West Village for some burgers at Corner Bistro",
+  question: "You're at the 92 street Y what train to do you take to get the West Village for some burgers at Corner Bistro?",
   answer:{
      a: "Gross, I only take Taxis",
      b: "5 train to the L", 
      c: "The NQR to the A",
   },
   correctAnswer: "5 train to the L",
-  // questionImage: <iframe src="https://giphy.com/embed/3osxYdZN9vCr0l7AiY" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/broadcity-broad-city-ilana-glazer-hail-to-the-kween-3osxYdZN9vCr0l7AiY">via GIPHY</a></p>;
-  // correctAnswerImage: ;
 }
 
 var question2 = {
-  question: "What is the tallest building",
+  question: "Which Manhattan streets border Central Park on the North and South?",
   answer:{
-      a: "One World Trade Center",
-      b: "Empire State Building",
-      c: "Chrysler Building",
+    a: "59th and 110th Streets",
+    b: "Central Park South and Central Park North",
+    c: "61st and 95th Streets",
   },
-  correctAnswer: "One World Trade Center",
+  correctAnswer: "59th and 110th Streets",
 }
 
 var question3 = {
-  question: "How Many Boroughs in NYC",
+  question: "How can you take a sight seeing tour of the Statue of Liberty for free?",
   answer:{
-      a: "One",
-      b: "Two",
-      c: "five",
+      a: "It's New York, nothing is free!",
+      b: "Staten Island Ferry",
+      c: "Swim around it",
     },
-  correctAnswer: "five",
+  correctAnswer: "Staten Island Ferry",
+}
+
+var question4 = {
+  question: "How many World's Fairs have taken place in New York City since 1900?",
+  answer: {
+    a: "Four",
+    b: "One",
+    c: "Two",
+  },
+  correctAnswer: "Two",
+}
+
+var question5 = {
+  question: "The dead outnumber the living in which borough?",
+  answer: {
+    a: "Manhattan",
+    b: "Queens",
+    c: "Brooklyn",
+  },
+  correctAnswer: "Queens",
 }
 
 // array of questions
-var questionArray = [question1, question2, question3];
+var questionArray = [question1, question2, question3, question4, question5];
 
 
 // dynamically display question and answers on screen
 function displayQuestion(object){
+  // Hides subway gif for when time runs out
+  $(".subway").hide()
   $("#game-round").empty();
   $("#game-answer").empty();
+  timer = setInterval(startTimer, 1000);
 
 // main div all components go into
   var round = $("<div>");
-  round.addClass("d-flex flex-sm-column justify-content-center m-4");
+  round.addClass("d-flex flex-sm-column justify-content-center");
 //  stores the question info
   var currentQ = object.question;
 // creates an element to have the question displayed
   var askMe = $("<h6>").text(currentQ);
-  askMe.addClass("mx-auto")
+  askMe.addClass("mx-auto display my-5")
 //   display the question
   round.append(askMe)
 
@@ -67,7 +91,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe1 = $("<button>").text(answer1);
 // add a class called Answers
-  guessMe1.addClass("answers mx-auto btn btn-dark answers my-2");
+  guessMe1.addClass("answers mx-auto btn btn-dark my-2");
 // value for if its a correct answer
   guessMe1.attr("value", answer1);
 //   display the question
@@ -78,7 +102,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe2 = $("<button>").text(answer2);
 // adds a class called answers
-  guessMe2.addClass("answers mx-auto btn btn-dark answers my-2");
+  guessMe2.addClass("answers mx-auto btn btn-dark my-2");
 // value for if its a correct answer
   guessMe2.attr("value", answer2);  
 //  display the question
@@ -89,7 +113,7 @@ function displayQuestion(object){
 // creates an element to have the answer display
   var guessMe3 = $("<button>").text(answer3);
 // adds a class called answers
-  guessMe3.addClass("answers mx-auto btn btn-dark answers my-2");
+  guessMe3.addClass("answers mx-auto btn btn-dark my-2");
 // value for if its a correct answer
   guessMe3.attr("value", answer3);
 //   display the question
@@ -101,7 +125,6 @@ function displayQuestion(object){
 
 //   checks if the answer is correct and then displays next question
   isCorrectAnswer(object);
-  timer = setInterval(startTimer, 1000);
 };
 
 // Starts the game by displaying first question
@@ -109,57 +132,12 @@ $("#start-game").on("click", function(){
     displayQuestion(questionArray[currentQuestion]);
 });
 
-// checks if the guess is correct then moves to the next question
-function correctGuess() {
-    alert("you are correct");
-    correct += 1;
-    console.log("correct Answer: " + correct);
-}
-
-
-function wrongGuess() {
-    alert("you are wrong");
-    wrong += 1;
-    console.log("wrong Answer: " + wrong);
-}
-
-
-function gameIsOver() {
-    alert("Lets see how you did");
-    $("#game-round").empty();
-    $("#count-down").empty();
-    $("#game-answer").empty();
-
-    var endOfGame = $("<div>");
-    endOfGame.addClass("d-flex flex-sm-column justify-content-center m-4");
-
-    var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct");
-  displayCorrectGuesses.addClass("display my-2 mx-auto");
-    endOfGame.append(displayCorrectGuesses);
-
-    var displayWrongGuesses = $("<div>").text("You got " + wrong + " wrong");
-    displayWrongGuesses.addClass("display my-2 mx-auto");
-    endOfGame.append(displayWrongGuesses);
-
-    var playAgain = $("<button>").text("Play Again");
-    playAgain.addClass("play-again mt-5 mx-auto btn btn-dark answers");
-    endOfGame.append(playAgain)
-
-    $("#game-round").append(endOfGame);
-
-  $(".play-again").on("click", function () {
-    correct = 0;
-    wrong = 0;
-    currentQuestion = 0;
-    displayQuestion(questionArray[currentQuestion]);
-  });
-};
-
+// Restarts counter and Displays new question
 function startNewRound() {
     currentQuestion += 1;
     console.log("this is current question # " + currentQuestion)
     clearInterval(timer);
-    counter = 5
+    counter = 25;
     if (currentQuestion < questionArray.length) {
         displayQuestion(questionArray[currentQuestion]);
     }
@@ -174,7 +152,6 @@ function isCorrectAnswer(object) {
         console.log(guess);
         if (guess === object.correctAnswer) {
             displayCorrectAnswer(object);
-            // correctGuess();
         }
         else {
             displayWrongGuess(object);
@@ -186,11 +163,16 @@ function isCorrectAnswer(object) {
 function startTimer(){
   counter --;
   console.log(counter)
-  $("#count-down").text("You have " + counter + " seconds left.")
+  $("#count-down").text("Time Remaining... " + counter + " sec")
   if (counter === 0){
     wrong += 1;
     console.log("wrong count: " + wrong);
-    startNewRound();
+    $("#game-round").empty();
+    clearInterval(timer);
+    $("#count-down").empty();
+    $(".subway").show()
+
+    setTimeout(startNewRound, 3000);
   }
 }
 
@@ -206,8 +188,8 @@ function displayCorrectAnswer(object){
     showAnswer.addClass("d-flex flex-sm-column justify-content-center m-4")
 
     var answerToShow = object.correctAnswer;
-    var displayAnswer = $("<div>").text("You got it! The correct answer was " + answerToShow);
-    displayAnswer.addClass("mx-auto");
+  var displayAnswer = $("<h1>").text("You Guessed it!    The correct answer was " + answerToShow + ".");
+    displayAnswer.addClass("mx-auto display");
     showAnswer.append(displayAnswer);
     $("#game-answer").append(showAnswer);
 }
@@ -223,8 +205,46 @@ function displayWrongGuess(object){
   showAnswer.addClass("d-flex flex-sm-column justify-content-center m-4");
 
   var answerToShow = object.correctAnswer;
-  var displayAnswer = $("<div>").text("You got it wrong! The correct answer was " + answerToShow);
-  displayAnswer.addClass("mx-auto");
+  var displayAnswer = $("<div>").text("Nice Try!    The correct answer was " + answerToShow + ".");
+  displayAnswer.addClass("mx-auto display");
   showAnswer.append(displayAnswer);
   $("#game-round").append(showAnswer)
 }
+
+function gameIsOver() {
+  alert("Lets see how you did");
+  $(".subway").hide();
+  $("#game-round").empty();
+  $("#count-down").empty();
+  $("#game-answer").empty();
+
+  var endOfGame = $("<div>");
+  endOfGame.addClass("d-flex flex-sm-column justify-content-center m-4");
+
+  if (correct > 3) {
+    var goodGame = $("<h4>").text("You've got an Empire State of mind! You are a true New Yorker!");
+    goodGame.addClass("display my-2 mx-auto");
+    endOfGame.append(goodGame);
+  } else if (correct <= 3){
+    var badGame = $("<h4>").text("You're at basic tourist level, have you even been to NYC?");
+    badGame.addClass("display my-2 mx-auto");
+    endOfGame.append(badGame);
+  };
+
+  var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct" + " & " + wrong + " wrong");
+  displayCorrectGuesses.addClass("display my-1 mx-auto");
+  endOfGame.append(displayCorrectGuesses);
+
+  var playAgain = $("<button>").text("Play Again");
+  playAgain.addClass("play-again mt-5 mx-auto btn btn-warning");
+  endOfGame.append(playAgain)
+
+  $("#game-round").append(endOfGame);
+
+  $(".play-again").on("click", function () {
+    correct = 0;
+    wrong = 0;
+    currentQuestion = 0;
+    displayQuestion(questionArray[currentQuestion]);
+  });
+};

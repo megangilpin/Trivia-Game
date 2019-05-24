@@ -9,6 +9,9 @@
     <!-- CSS Lins -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Josefin+Slab|Sanchez&display=swap" rel="stylesheet">
+
+
 
     <!-- jquery link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -16,44 +19,46 @@
 
 <body>
 
-  <header>
-    <div class="container my-5 justify-content-center"></div>
-      <h1 class="text-center font-weight-bold">The New Yorker Trivia Game</h1>
-    </div>
-  </header>
-  <section class="container">
+  <section class="container mt-5">
+    
     <div class="row justify-content-center my-3">
-      <div class="col-2">
+      <div class="col-sm-6 d-flex flex-sm-row justify-content-center">
         <iframe src="https://giphy.com/embed/l3V0sI8GAKIZ00y4w" width="100%" height="100%" frameBorder="0"></iframe>
-      </div>
-      <div class="col-2">
-        <iframe src="https://giphy.com/embed/26AHqv2PcuPuhNY2c" width="100%" height="100%" frameBorder="0"></iframe>
-      </div>
-      <div class="col-2">
-        <iframe src="https://giphy.com/embed/l3V0sI8GAKIZ00y4w" width="100%" height="100%" frameBorder="0"></iframe>
-      </div>
-      <div class="col-2">
-        <iframe src="https://giphy.com/embed/26AHqv2PcuPuhNY2c" width="100%" height="100%" frameBorder="0"></iframe>
+        <h1 class="title display-2">Trivia</h1>
       </div>
     </div>
 
-  </div>
-    <div class=" row jumbotron justify-content-center mb-5">
-      <div class="col-12" id="game-area">
-        <div class="row justify-content-center mb-3" id="count-down"></div>
-        <div class="row" id="game-answer"></div>
-        <div class="d-flex flex-sm-column justify-content-center m-4" id="game-round">
-          <h3 class="text-center mb-4">Think you've got what it takes to become a true New Yorker?  Play the ULTIMATE Big Apple trivia game to find out. Careful you've only got a New York minute to answer each question.</h3>
-          <button class="mx-auto btn btn-warning answers" id="start-game">Start Game</button>
+    </div>
+      <div class=" row jumbotron justify-content-center mb-5" id="game-area">
+        <div class="col-12">
+          <div class="row justify-content-center subway">
+            <iframe src="https://giphy.com/embed/h2IsKmfwNh3I4" width="480" height="259" frameBorder="0" alt="Subway Car Goes By"></iframe>
+          </div>
+          <div class="row justify-content-center mt-3" id="count-down"></div>
+          <div class="row justify-content-center" id="game-answer"></div>
+          <div class="d-flex flex-sm-column justify-content-center m-2" id="game-round">
+            <p class="text-center mb-4 instructions">Think you've got what it takes to become a true New Yorker?  Play the ULTIMATE Big Apple trivia game to find out. Careful you've only got a New York minute to answer each question.</p>
+            <button class="mx-auto btn btn-warning answers" id="start-game">Start Game</button>
         </div>
       </div>  
     </div>
-
   </section>
 
+  <footer class="mt-5">
+    <div class="d-flex flex-sm-row justify-content-center">
+      <div class="col-sm-4 mx-auto">
+        <iframe class="float-left" src="https://giphy.com/embed/26AHqv2PcuPuhNY2c" width="50%" height="50%" frameBorder="0" alt="I Love NY"></iframe>
+        <p class="display"><small>Brought to you by Pizza Rat and Megan Gilpin</small></p>
+      </div>
+    </div>
+  </footer>
 
 
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+
+<script type="text/javascript" src="assets/javascript/app.js">
+  // Hides subway gif for when time runs out
+  $(".subway").hide()
+</script>
 
 </body>
 </html>
