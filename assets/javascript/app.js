@@ -5,6 +5,8 @@ var currentQuestion = 0;
 // Correct/Wrong answer counts
 var correct = 0;
 var wrong = 0;
+
+// Timer Variables
 var counter = 25;
 var timer;
 
@@ -66,17 +68,22 @@ var question5 = {
 var questionArray = [question1, question2, question3, question4, question5];
 
 
-// dynamically display question and answers on screen
+// dynamically display questions and answers on screen
 function displayQuestion(object){
   // Hides subway gif for when time runs out
   $(".subway").hide()
+
+  // Empty's current div and answer div
   $("#game-round").empty();
   $("#game-answer").empty();
+
+  // Starts timer
   timer = setInterval(startTimer, 1000);
 
 // main div all components go into
   var round = $("<div>");
   round.addClass("d-flex flex-sm-column justify-content-center");
+
 //  stores the question info
   var currentQ = object.question;
 // creates an element to have the question displayed
@@ -120,10 +127,10 @@ function displayQuestion(object){
   round.append(guessMe3)
 
 
-// Put all the question info on page
+// Puts all the question info on page
   $("#game-round").append(round)
 
-//   checks if the answer is correct and then displays next question
+//   checks if the answer is correct
   isCorrectAnswer(object);
 };
 
@@ -188,7 +195,7 @@ function displayCorrectAnswer(object){
     showAnswer.addClass("d-flex flex-sm-column justify-content-center m-4")
 
     var answerToShow = object.correctAnswer;
-  var displayAnswer = $("<h1>").text("You Guessed it!    The correct answer was " + answerToShow + ".");
+    var displayAnswer = $("<h1>").text("You Guessed it!    The correct answer was " + answerToShow + ".");
     displayAnswer.addClass("mx-auto display");
     showAnswer.append(displayAnswer);
     $("#game-answer").append(showAnswer);
@@ -231,7 +238,7 @@ function gameIsOver() {
     endOfGame.append(badGame);
   };
 
-  var displayCorrectGuesses = $("<div>").text("You got " + correct + " correct" + " & " + wrong + " wrong");
+  var displayCorrectGuesses = $("<div>").text("You got " + correct + "/" + wrong + " right.");
   displayCorrectGuesses.addClass("display my-1 mx-auto");
   endOfGame.append(displayCorrectGuesses);
 
