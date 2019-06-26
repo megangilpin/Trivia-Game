@@ -1,6 +1,6 @@
 # TriviaGame
 
-Timed Trivia Game
+## Timed Trivia Game
 https://megangilpin.github.io/Trivia-Game/
 
 * Questions/Answer slides are dynamically displayed on screen
