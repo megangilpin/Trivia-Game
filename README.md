@@ -1,4 +1,4 @@
-# Timed Trivia Game 	:clock1:
+# Timed Trivia Game 	:alarm_clock:
 https://megangilpin.github.io/Trivia-Game/
 
 * Questions/Answer slides dynamically displayed on screen
