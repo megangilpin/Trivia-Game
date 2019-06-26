@@ -1,5 +1,6 @@
 # TriviaGame
 Timed Trivia Game
+https://megangilpin.github.io/Trivia-Game/
 
 -Questions are dynamically displayed on screen 
 -Question timer created with setInterval
