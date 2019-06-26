@@ -1,4 +1,4 @@
-# Timed Trivia Game 	:apple:
+# Timed Trivia Game 	:clock1:
 https://megangilpin.github.io/Trivia-Game/
 
 * Questions/Answer slides are dynamically displayed on screen
