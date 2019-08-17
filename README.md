@@ -31,4 +31,4 @@ Once the player guesses the question, an answer slide is displayed then changes 
     1. Dynmaically displays the question and possible answers as a button onto the page
     2. Starts the timer using the global timer variable and setinterval()
     3. Calls the funciton that checks if the answer is correct that will then display the correct answer and inform the user if they got it correct or incorrect 
-1. 
+1. Create a function to dynmically display the final score and resets the game if the user clicks on the play again button
