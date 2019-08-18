@@ -3,7 +3,7 @@ https://megangilpin.github.io/Trivia-Game/
 
 ### Overview
 
-Created a timed triva game using jQuery, setTimeout() and setInterval() methods.
+Created a timed trivia game using jQuery, setTimeout() and setInterval() methods.
 
 ### Functionality Breakdown
 Question and answer slides are dynmically dsplayed on the screen. A 30 second timer for each question is displayed on the screen with the help of setTimeout() and setInterval(). 
