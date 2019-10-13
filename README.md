@@ -1,6 +1,8 @@
 # Timed Trivia Game 	:alarm_clock:
 https://megangilpin.github.io/Trivia-Game/
 
+![Trivia Game Demo](demo/triviaGame.gif)
+
 ### Overview
 
 Created a timed trivia game using jQuery, setTimeout() and setInterval() methods.

@@ -238,7 +238,7 @@ function gameIsOver() {
     endOfGame.append(badGame);
   };
 
-  var displayCorrectGuesses = $("<div>").text("You got " + correct + "/" + wrong + " right.");
+  var displayCorrectGuesses = $("<div>").text("You got " + correct + "/5 right.");
   displayCorrectGuesses.addClass("display my-1 mx-auto");
   endOfGame.append(displayCorrectGuesses);
 
